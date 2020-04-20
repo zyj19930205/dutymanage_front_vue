@@ -1,13 +1,13 @@
 <template>
   <Sider hide-trigger :style="{background: '#fff'}">
-    <Menu theme="light" width="auto" :open-names="['1']" @on-select="changeChecked" :active-name="activeMenu">
+    <Menu theme="light" width="auto" :open-names="['1']" @on-select="changeChecked" :active-name="$route.path">
       <Submenu name="1">
         <template slot="title">
           <Icon type="ios-navigate"></Icon>
           员工管理
         </template>
-     <MenuItem name="1-1">员工列表</MenuItem>
-      <MenuItem name="1-2" >添加员工</MenuItem>
+     <MenuItem name="/" to="/">员工列表</MenuItem>
+      <MenuItem name="/dutyManage" to="/dutyManage">添加员工</MenuItem>
         <MenuItem name="1-3">查询员工</MenuItem>
       </Submenu>
       <Submenu name="2">
@@ -40,12 +40,12 @@ export default {
   name: 'LeftNavBar',
   data(){
     return{
-      activeMenu:'1-1'
+      activeMenu:''
     }
   },
   methods:{
     changeChecked(name){
-      alert(name)
+      this.activeMenu=name
     }
   }
 }
