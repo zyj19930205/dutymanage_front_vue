@@ -9,7 +9,7 @@
       <Button type="error" size="small" @click="remove(index)">删除</Button>
 <!--      <Button type="primary" size="small" @click="modal6 = true">编辑</Button>-->
 <!--      <Button type="primary" @click="modal6 = true" size="small">修改</Button>-->
-      <edit-emp-btn></edit-emp-btn>
+      <edit-emp-btn v-bind:empInfo="data1[index]"></edit-emp-btn>
     </template>
   </Table>
     <div class="dividPage" style="margin-top: 10px">
@@ -21,6 +21,7 @@
 <script>
 import EditEmpBtn from './editEmpBtn'
 export default {
+  name: 'dataTable',
   components: {
     EditEmpBtn
   },
@@ -126,7 +127,7 @@ export default {
     show (index) {
       this.$Modal.info({
         title: 'User Info',
-        content: `姓名：${this.data1[index].name}<br>性别：${this.data1[index].gender}<br>备注：${this.data1[index].remarks}<br>值班类型：${this.data1[index].empDutyTypeIds}`
+        content: `ID：${this.data1[index].id}<br>姓名：${this.data1[index].name}<br>性别：${this.data1[index].gender}<br>备注：${this.data1[index].remarks}<br>值班类型：${this.data1[index].empDutyTypeIds}`
       })
     },
     edit () {
