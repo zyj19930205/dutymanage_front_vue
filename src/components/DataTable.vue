@@ -147,8 +147,8 @@ export default {
         {id: 1, text: '不参与值班'},
         {id: 10, text: '特殊值班'}
       ]
-      for (var i = 0, l = dutyTypes.length; i < l; i++) {
-        var g = dutyTypes[i]
+      for (let i = 0, l = dutyTypes.length; i < l; i++) {
+        let g = dutyTypes[i]
         // console.log('value is' + dutyTypeIdArray)
         if (g.id == dutyTypeIdArray) { return g.text }
       }

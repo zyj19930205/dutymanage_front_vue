@@ -20,9 +20,9 @@
   </div>
 </template>
 <script>
-import dataTable from '../components/DataTable'
-import LeftNavBar from '../components/LeftNavBar'
-import HeaderNav from '../components/HeaderNav'
+import dataTable from '../../components/DataTable'
+import LeftNavBar from '../../components/LeftNavBar'
+import HeaderNav from '../../components/HeaderNav'
 export default {
   components: {
     dataTable,LeftNavBar,HeaderNav

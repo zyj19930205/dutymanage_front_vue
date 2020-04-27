@@ -29,8 +29,8 @@
 
       <FormItem label="值班类型">
 <!--        <Input v-model="empInfo.empDutyTypeIds"  clearable style="width: 200px" />-->
-        <CheckboxGroup v-model="border">
-          <Checkbox label="不值班"  disabled></Checkbox>
+        <CheckboxGroup v-model="empDutyIdArrayName">
+          <Checkbox label="不参与值班"  disabled></Checkbox>
           <Checkbox label="周四晚班" ></Checkbox>
           <Checkbox label="普通晚班" ></Checkbox>
 <!--          <Checkbox label="周末白班" border></Checkbox>-->
@@ -38,8 +38,8 @@
           <Checkbox label="周日白班" ></Checkbox>
           <Checkbox label="周六晚班" ></Checkbox>
           <Checkbox label="周日晚班" ></Checkbox>
-          <Checkbox label="假期白班" ></Checkbox>
-          <Checkbox label="假期晚班" ></Checkbox>
+          <Checkbox label="假日白班" ></Checkbox>
+          <Checkbox label="假日晚班" ></Checkbox>
           <Checkbox label="特殊值班" ></Checkbox>
         </CheckboxGroup>
       </FormItem>
@@ -79,31 +79,26 @@ export default {
     },
     transferDutyNumToDutyName (dutyTypeIdArray) {
       let dutyTypes = [
+        {id: 1, text: '不参与值班'},
         {id: 2, text: '假日白班'},
         {id: 3, text: '周四晚班'},
+        {id: 4, text: '周末白班'},
         {id: 5, text: '普通晚班'},
         {id: 6, text: '周六白班'},
         {id: 7, text: '周日白班'},
         {id: 8, text: '周六晚班'},
         {id: 9, text: '周日晚班'},
         {id: 11, text: '假日晚班'},
-        {id: 4, text: '周末白班'},
-        {id: 1, text: '不参与值班'},
         {id: 10, text: '特殊值班'}
       ]
       let dutyText = []
-      // for (let i = 0, l = dutyTypeIdArray.length; i < l; i++) {
-      //     let g =
-      // }
-      // for (var i = 0, l = dutyTypes.length; i < l; i++) {
-      //   var g = dutyTypes[i]
-      //
-      //   // console.log('value is' + dutyTypeIdArray)
-      //   if (g.id == dutyTypeIdArray[i]) {
-      //     dutyText.push(g.text)
-      //   }
-      // }
-      alert(dutyText)
+      for(let i=0,l = dutyTypeIdArray.length;i<l;i++){
+        for(let j=0,k = dutyTypes.length;j<k;j++){
+          if(dutyTypeIdArray[i]==dutyTypes[j].id){
+            dutyText.push(dutyTypes[j].text)
+          }
+        }
+      }
       return dutyText
     }
   }
