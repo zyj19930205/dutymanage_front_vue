@@ -13,12 +13,12 @@
           <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
 
             <template>
-              <Form :model="formItem" :label-width="80">
+              <Form :model="empInfo" :label-width="80">
                 <FormItem label="员工姓名">
-                  <Input v-model="formItem.input" placeholder="请输入姓名"></Input>
+                  <Input v-model="empInfo.empName" placeholder="请输入姓名"></Input>
                 </FormItem>
                 <FormItem label="组别">
-                  <Select v-model="formItem.select">
+                  <Select v-model="empInfo.dept">
                     <Option value="营业">营业组</Option>
                     <Option value="账务">账务组</Option>
                     <Option value="数据">数据组</Option>
@@ -28,18 +28,18 @@
                 <FormItem label="入职日期">
                   <Row>
                     <Col span="11">
-                      <DatePicker type="date" placeholder="Select date" v-model="formItem.date"></DatePicker>
+                      <DatePicker type="date" placeholder="Select date" v-model="empInfo.date"></DatePicker>
                     </Col>
                   </Row>
                 </FormItem>
                 <FormItem label="性别">
-                  <RadioGroup v-model="formItem.radio">
-                    <Radio label="male">男</Radio>
-                    <Radio label="female">女</Radio>
+                  <RadioGroup v-model="empInfo.gender">
+                    <Radio label="男">男</Radio>
+                    <Radio label="女">女</Radio>
                   </RadioGroup>
                 </FormItem>
                 <FormItem label="值班类型">
-                  <CheckboxGroup v-model="formItem.checkbox">
+                  <CheckboxGroup v-model="empInfo.dutyTypes">
                     <Checkbox label="不值班" value="1"></Checkbox>
                     <Checkbox label="假日白班" value="2"></Checkbox>
                     <Checkbox label="周四晚班" value="3"></Checkbox>
@@ -54,10 +54,10 @@
                   </CheckboxGroup>
                 </FormItem>
                 <FormItem label="备注">
-                  <Input v-model="formItem.textarea" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="描述一下你自个吧！"></Input>
+                  <Input v-model="empInfo.remarks" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="描述一下你自个吧！"></Input>
                 </FormItem>
                 <FormItem>
-                  <Button type="primary">Submit</Button>
+                  <Button type="primary" @click="showEmpInfo">Submit</Button>
                   <Button style="margin-left: 8px">Cancel</Button>
                 </FormItem>
               </Form>
@@ -75,19 +75,37 @@ import HeaderNav from '../../components/HeaderNav'
 export default {
   components: {
     dataTable, LeftNavBar, HeaderNav
-  },data () {
+  },
+  data () {
     return {
-      formItem: {
-        input: '',
-        select: '',
-        radio: 'male',
-        checkbox: [],
-        switch: true,
+      empInfo: {
+        empName: '',
+        dept: '',
+        gender: '男',
+        dutyTypes: [],
         date: '',
         time: '',
-        slider: [20, 50],
-        textarea: ''
+        remarks: ''
       }
+    }
+  },
+  methods:{
+    showEmpInfo(){
+      this.axios.post('http://localhost:8081/addEmp', this.empInfo,{
+        params: {
+          name: this.empInfo.empName,
+          gender: this.empInfo.gender,
+          remarks: this.empInfo.remarks,
+          empDutyTypeIds:this.empInfo.dutyTypes.toString()
+        }
+      })
+        .then(response => {
+          alert('添加成功！')
+          this.$router.push({path:'/'})
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
 

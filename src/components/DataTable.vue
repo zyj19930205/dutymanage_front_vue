@@ -1,5 +1,11 @@
 <template>
   <div>
+    <Modal
+      v-model="confirmDel"
+      title="确认删除？"
+      @on-ok="ok">
+      <p>确定要删除员工{{employeeInfo}}？</p>
+    </Modal>
   <Table border :columns="columns1" :data="data1">
     <template slot-scope="{ row }" slot="name">
       <strong>{{ row.name }}</strong>
@@ -28,6 +34,7 @@ export default {
   props: ['a_page'],
   data () {
     return {
+      confirmDel: false,
       columns1: [
         {
           title: '序号',
@@ -85,6 +92,8 @@ export default {
       ],
       data1: [],
       dataNum: 0,
+      employeeInfo:'',
+      employeeId:'',
       modal6: false
     }
   },
@@ -96,6 +105,7 @@ export default {
       }
     })
       .then(response => {
+        console.log("data1 is"+this.data1)
         this.data1 = response.data.data
       })
       .catch(function (error) {
@@ -128,6 +138,18 @@ export default {
       this.$Modal.info({
         title: 'User Info',
         content: `ID：${this.data1[index].id}<br>姓名：${this.data1[index].name}<br>性别：${this.data1[index].gender}<br>备注：${this.data1[index].remarks}<br>值班类型：${this.data1[index].empDutyTypeIds}`
+      })
+    },
+    remove(index){
+      this.employeeInfo = this.data1[index].name
+      this.employeeId = this.data1[index].id
+      this.confirmDel = true
+    },
+    ok(){
+      this.axios.delete('http://localhost:8081/delEmp/'+this.employeeId)
+      .then(response => {
+        console.log(response)
+        alert(response.data)
       })
     },
     edit () {
