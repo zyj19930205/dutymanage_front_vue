@@ -16,16 +16,16 @@
           排班管理
         </template>
         <MenuItem name="/dutyList" to="/dutyList">值班数据查询</MenuItem>
-        <MenuItem name="2-2">排班队列查询</MenuItem>
-        <MenuItem name="2-3">排班历史查询</MenuItem>
+        <MenuItem name="/queueList" to="/queueList">排班队列查询</MenuItem>
+        <MenuItem name="/dutyHistory" to="/dutyHistory">排班历史查询</MenuItem>
       </Submenu>
       <Submenu name="1">
         <template slot="title">
           <Icon type="ios-analytics"></Icon>
-          Item 3
+          自动化程序
         </template>
-        <MenuItem name="3-1">Option 1</MenuItem>
-        <MenuItem name="3-2">Option 2</MenuItem>
+        <MenuItem name="/autoDuty" to="/autoDuty">一键自动排班</MenuItem>
+<!--        <MenuItem name="3-2"></MenuItem>-->
       </Submenu>
     </Menu>
   </Sider>

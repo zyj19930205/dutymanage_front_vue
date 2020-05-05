@@ -11,7 +11,7 @@
             <BreadcrumbItem>员工管理</BreadcrumbItem>
             <BreadcrumbItem>员工列表</BreadcrumbItem>
           </Breadcrumb>
-          <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+          <Content :style="{padding: '24px', minHeight: '820px', background: '#fff'}">
             <data-table></data-table>
           </Content>
         </Layout>
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import dataTable from '../../components/DataTable'
+import dataTable from '../../components/EmpTable'
 import LeftNavBar from '../../components/LeftNavBar'
 import HeaderNav from '../../components/HeaderNav'
 export default {

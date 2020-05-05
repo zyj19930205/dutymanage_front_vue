@@ -10,7 +10,7 @@
             <BreadcrumbItem>员工管理</BreadcrumbItem>
             <BreadcrumbItem>查询员工</BreadcrumbItem>
           </Breadcrumb>
-          <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+          <Content :style="{padding: '24px', minHeight: '820px', background: '#fff'}">
            <Input search enter-button placeholder="请输入姓名"  @on-search="serachEmpInfo"/>
             <h1 v-show="show">今晚开黑!时不我待！</h1>
           </Content>
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-  import dataTable from '../../components/DataTable'
+  import dataTable from '../../components/EmpTable'
   import LeftNavBar from '../../components/LeftNavBar'
   import HeaderNav from '../../components/HeaderNav'
   export default {

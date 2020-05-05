@@ -1,11 +1,13 @@
 <template>
   <div>
+
     <Modal
       v-model="confirmDel"
       title="确认删除？"
-      @on-ok="ok">
+      @on-ok="deleteOk">
       <p>确定要删除员工{{employeeInfo}}？</p>
     </Modal>
+
   <Table border :columns="columns1" :data="data1">
     <template slot-scope="{ row }" slot="name">
       <strong>{{ row.name }}</strong>
@@ -94,6 +96,7 @@ export default {
       dataNum: 0,
       employeeInfo:'',
       employeeId:'',
+      empIndex:0,
       modal6: false
     }
   },
@@ -105,7 +108,7 @@ export default {
       }
     })
       .then(response => {
-        console.log("data1 is"+this.data1)
+        console.log("data1 is"+response)
         this.data1 = response.data.data
       })
       .catch(function (error) {
@@ -144,16 +147,15 @@ export default {
       this.employeeInfo = this.data1[index].name
       this.employeeId = this.data1[index].id
       this.confirmDel = true
+      this.empIndex = index
     },
-    ok(){
+    deleteOk(){
       this.axios.delete('http://localhost:8081/delEmp/'+this.employeeId)
       .then(response => {
-        console.log(response)
+       // console.log(response)
         alert(response.data)
+        this.data1.splice(this.empIndex,1)
       })
-    },
-    edit () {
-      alert('haha')
     },
     transferDutyNumToDutyName (dutyTypeIdArray) {
       let dutyTypes = [

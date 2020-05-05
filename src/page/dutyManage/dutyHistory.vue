@@ -1,4 +1,3 @@
-
 <template>
   <div class="layout">
     <Layout>
@@ -9,15 +8,19 @@
           <Breadcrumb :style="{margin: '24px 0'}">
             <BreadcrumbItem>首页</BreadcrumbItem>
             <BreadcrumbItem>排班管理</BreadcrumbItem>
-            <BreadcrumbItem>值班信息</BreadcrumbItem>
+            <BreadcrumbItem>值班历史查询</BreadcrumbItem>
           </Breadcrumb>
           <Content :style="{padding: '24px', minHeight: '820px', background: '#fff'}">
             <div class="dutyToolBtn" style="margin-bottom: 10px">
-              <Button type="success">执行排班计划</Button>
-              <Button type="success">在日历中展示</Button>
+              <Input placeholder="根据姓名查询" style="width: auto">
+                <Icon type="ios-search" slot="suffix" />
+              </Input>
+              <div style="display: inline-block;float: right">
+              <DatePicker type="daterange" placement="bottom-end" placeholder="根据日期搜索" style="width: 200px"></DatePicker>
+                <Button>搜索</Button>
+              </div>
             </div>
-            <duty-table>
-            </duty-table>
+          <duty-history></duty-history>
           </Content>
         </Layout>
       </Layout>
@@ -27,10 +30,10 @@
 <script>
   import LeftNavBar from '../../components/LeftNavBar'
   import HeaderNav from '../../components/HeaderNav'
-  import DutyTable from '../../components/DutyTable'
+  import DutyHistory from '../../components/DutyHistory'
   export default {
     components: {
-      DutyTable,LeftNavBar,HeaderNav
+      DutyHistory,LeftNavBar,HeaderNav
     }
   }
 </script>

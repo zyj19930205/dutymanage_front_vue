@@ -1,4 +1,3 @@
-
 <template>
   <div class="layout">
     <Layout>
@@ -9,15 +8,10 @@
           <Breadcrumb :style="{margin: '24px 0'}">
             <BreadcrumbItem>首页</BreadcrumbItem>
             <BreadcrumbItem>排班管理</BreadcrumbItem>
-            <BreadcrumbItem>值班信息</BreadcrumbItem>
+            <BreadcrumbItem>值班队列查询</BreadcrumbItem>
           </Breadcrumb>
           <Content :style="{padding: '24px', minHeight: '820px', background: '#fff'}">
-            <div class="dutyToolBtn" style="margin-bottom: 10px">
-              <Button type="success">执行排班计划</Button>
-              <Button type="success">在日历中展示</Button>
-            </div>
-            <duty-table>
-            </duty-table>
+            <duty-queue-table></duty-queue-table>
           </Content>
         </Layout>
       </Layout>
@@ -27,10 +21,10 @@
 <script>
   import LeftNavBar from '../../components/LeftNavBar'
   import HeaderNav from '../../components/HeaderNav'
-  import DutyTable from '../../components/DutyTable'
+  import DutyQueueTable from '../../components/DutyQueueTable'
   export default {
     components: {
-      DutyTable,LeftNavBar,HeaderNav
+      DutyQueueTable,LeftNavBar,HeaderNav
     }
   }
 </script>

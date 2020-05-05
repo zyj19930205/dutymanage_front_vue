@@ -10,7 +10,7 @@
             <BreadcrumbItem>员工管理</BreadcrumbItem>
             <BreadcrumbItem>添加员工</BreadcrumbItem>
           </Breadcrumb>
-          <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+          <Content :style="{padding: '24px', minHeight: '820px', background: '#fff'}">
 
             <template>
               <Form :model="empInfo" :label-width="80">
@@ -69,7 +69,7 @@
   </div>
 </template>
 <script>
-import dataTable from '../../components/DataTable'
+import dataTable from '../../components/EmpTable'
 import LeftNavBar from '../../components/LeftNavBar'
 import HeaderNav from '../../components/HeaderNav'
 export default {
