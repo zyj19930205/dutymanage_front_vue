@@ -13,7 +13,7 @@
           </Breadcrumb>
           <Content :style="{padding: '24px', minHeight: '820px', background: '#fff'}">
             <div class="dutyToolBtn" style="margin-bottom: 10px">
-              <Button type="success">执行排班计划</Button>
+              <Button type="success" @click="executeDutyPlan">执行排班计划</Button>
               <Button type="success">在日历中展示</Button>
             </div>
             <duty-table>
@@ -31,6 +31,16 @@
   export default {
     components: {
       DutyTable,LeftNavBar,HeaderNav
+    },methods:{
+      executeDutyPlan(){
+        this.axios.post('http://localhost:8081/executeFormalDutyPlan')
+          .then(response => {
+            alert('执行成功！')
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   }
 </script>
