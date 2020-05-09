@@ -25,22 +25,28 @@
   </div>
 </template>
 <script>
-  import LeftNavBar from '../../components/LeftNavBar'
-  import HeaderNav from '../../components/HeaderNav'
-  import DutyTable from '../../components/DutyTable'
-  export default {
-    components: {
-      DutyTable,LeftNavBar,HeaderNav
-    },methods:{
-      executeDutyPlan(){
-        this.axios.post('http://localhost:8081/executeFormalDutyPlan')
-          .then(response => {
-            alert('执行成功！')
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      }
+import LeftNavBar from '../../components/LeftNavBar'
+import HeaderNav from '../../components/HeaderNav'
+import DutyTable from '../../components/DutyTable'
+export default {
+  data () {
+    return {
+      serverUrl: this.GLOBAL.localSrc
+    }
+  },
+  components: {
+    DutyTable, LeftNavBar, HeaderNav
+  },
+  methods: {
+    executeDutyPlan () {
+      this.axios.post(this.serverUrl + '/executeFormalDutyPlan')
+        .then(response => {
+          alert('执行成功！')
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   }
+}
 </script>

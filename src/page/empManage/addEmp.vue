@@ -85,23 +85,24 @@ export default {
         dutyTypes: [],
         date: '',
         time: '',
-        remarks: ''
+        remarks: '',
+        serverUrl: this.GLOBAL.localSrc
       }
     }
   },
-  methods:{
-    showEmpInfo(){
-      this.axios.post('http://localhost:8081/addEmp', this.empInfo,{
+  methods: {
+    showEmpInfo () {
+      this.axios.post(this.serverUrl + '/addEmp', this.empInfo, {
         params: {
           name: this.empInfo.empName,
           gender: this.empInfo.gender,
           remarks: this.empInfo.remarks,
-          empDutyTypeIds:this.empInfo.dutyTypes.toString()
+          empDutyTypeIds: this.empInfo.dutyTypes.toString()
         }
       })
         .then(response => {
           alert('添加成功！')
-          this.$router.push({path:'/'})
+          this.$router.push({path: '/'})
         })
         .catch(function (error) {
           console.log(error)

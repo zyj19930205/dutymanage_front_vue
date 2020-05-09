@@ -38,14 +38,14 @@
 <script>
 export default {
   name: 'LeftNavBar',
-  data(){
-    return{
-      activeMenu:''
+  data () {
+    return {
+      activeMenu: ''
     }
   },
-  methods:{
-    changeChecked(name){
-      this.activeMenu=name
+  methods: {
+    changeChecked (name) {
+      this.activeMenu = name
     }
   }
 }

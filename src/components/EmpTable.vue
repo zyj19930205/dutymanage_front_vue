@@ -94,27 +94,28 @@ export default {
       ],
       data1: [],
       dataNum: 0,
-      employeeInfo:'',
-      employeeId:'',
-      empIndex:0,
-      modal6: false
+      employeeInfo: '',
+      employeeId: '',
+      empIndex: 0,
+      modal6: false,
+      serverUrl: this.GLOBAL.localSrc
     }
   },
   mounted () {
-    this.axios.get('http://localhost:8081/getEmployeeByPage', {
+    this.axios.get(this.serverUrl + '/getEmployeeByPage', {
       params: {
         limit: 10,
         page: 1
       }
     })
       .then(response => {
-        console.log("data1 is"+response)
+        console.log('data1 is' + response)
         this.data1 = response.data.data
       })
       .catch(function (error) {
         console.log(error)
       })
-    this.axios.get('http://localhost:8081/getEmployee')
+    this.axios.get(this.serverUrl + '/getEmployee')
       .then(response => {
         this.dataNum = response.data.count
       })
@@ -122,7 +123,7 @@ export default {
   methods: {
     changepage (index) {
       console.log(index)
-      this.axios.get('http://localhost:8081/getEmployeeByPage', {
+      this.axios.get(this.serverUrl + '/getEmployeeByPage', {
         params: {
           limit: 10,
           page: index
@@ -143,19 +144,19 @@ export default {
         content: `ID：${this.data1[index].id}<br>姓名：${this.data1[index].name}<br>性别：${this.data1[index].gender}<br>备注：${this.data1[index].remarks}<br>值班类型：${this.data1[index].empDutyTypeIds}`
       })
     },
-    remove(index){
+    remove (index) {
       this.employeeInfo = this.data1[index].name
       this.employeeId = this.data1[index].id
       this.confirmDel = true
       this.empIndex = index
     },
-    deleteOk(){
-      this.axios.delete('http://localhost:8081/delEmp/'+this.employeeId)
-      .then(response => {
-       // console.log(response)
-        alert(response.data)
-        this.data1.splice(this.empIndex,1)
-      })
+    deleteOk () {
+      this.axios.delete(this.serverUrl + '/delEmp/' + this.employeeId)
+        .then(response => {
+          // console.log(response)
+          alert(response.data)
+          this.data1.splice(this.empIndex, 1)
+        })
     },
     transferDutyNumToDutyName (dutyTypeIdArray) {
       let dutyTypes = [

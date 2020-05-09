@@ -19,82 +19,83 @@
   </div>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        columns: [
-          {
-            title: '序号',
-            key: '#',
-            type: 'index',
-            width: 80
-          },
-          {
-            title: '姓名',
-            key: 'empName'
-          },
-          {
-            title: '值班日期',
-            key: 'dutyDate',
-            sortable: true
-          },
-          {
-            title: '值班类型',
-            key: 'typeName'
-          },
-          {
-            title: '值班结果',
-            key:'dutyResult'
-          }
-        ],
-        dutyHistory: [],
-        dataNum:''
+export default {
+  data () {
+    return {
+      columns: [
+        {
+          title: '序号',
+          key: '#',
+          type: 'index',
+          width: 80
+        },
+        {
+          title: '姓名',
+          key: 'empName'
+        },
+        {
+          title: '值班日期',
+          key: 'dutyDate',
+          sortable: true
+        },
+        {
+          title: '值班类型',
+          key: 'typeName'
+        },
+        {
+          title: '值班结果',
+          key: 'dutyResult'
+        }
+      ],
+      dutyHistory: [],
+      dataNum: '',
+      serverUrl: this.GLOBAL.localSrc
+    }
+  },
+  mounted () {
+    this.axios.get(this.serverUrl + '/getFormalDutyByPage', {
+      params: {
+        limit: 10,
+        page: 1
       }
+    })
+      .then(response => {
+        console.log('data1 is' + response.data.data)
+        this.dutyHistory = response.data.data
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+
+    this.axios.get(this.serverUrl + '/getFormalDutyByPage')
+      .then(response => {
+        this.dataNum = response.data.count
+      })
+  },
+  methods: {
+    show (index) {
+      this.$Modal.info({
+        title: '队列信息',
+        content: `Name：${this.dutyHistory[index].empName}<br>Age：${this.dutyHistory[index].rowId}<br>Address：${this.dutyHistory[index].empId}`
+      })
     },
-    mounted () {
-      this.axios.get('http://localhost:8081/getFormalDutyByPage', {
+    changepage (index) {
+      console.log(index)
+      this.axios.get(this.serverUrl + '/getFormalDutyByPage', {
         params: {
           limit: 10,
-          page: 1
+          page: index
         }
       })
         .then(response => {
-          console.log("data1 is"+response.data.data)
           this.dutyHistory = response.data.data
+          // this.dataNum = this.data1.length
+          console.log('ok')
         })
         .catch(function (error) {
           console.log(error)
         })
-
-      this.axios.get('http://localhost:8081/getFormalDutyByPage')
-        .then(response => {
-          this.dataNum = response.data.count
-        })
-    },
-    methods: {
-      show (index) {
-        this.$Modal.info({
-          title: '队列信息',
-          content: `Name：${this.dutyHistory[index].empName}<br>Age：${this.dutyHistory[index].rowId}<br>Address：${this.dutyHistory[index].empId}`
-        })
-      },
-      changepage (index) {
-        console.log(index)
-        this.axios.get('http://localhost:8081/getFormalDutyByPage', {
-          params: {
-            limit: 10,
-            page: index
-          }
-        })
-          .then(response => {
-            this.dutyHistory = response.data.data
-            // this.dataNum = this.data1.length
-            console.log('ok')
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      }
     }
   }
+}
 </script>

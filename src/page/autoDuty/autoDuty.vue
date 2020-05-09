@@ -1,6 +1,5 @@
 <template>
 
-
   <div class="layout">
     <Modal
       v-model="confirmModal"
@@ -50,42 +49,47 @@
 
 </template>
 <script>
-  import LeftNavBar from '../../components/LeftNavBar'
-  import HeaderNav from '../../components/HeaderNav'
-  export default {
-    components:{
-      LeftNavBar,HeaderNav
-    },
-    data(){
-      return {
-        confirmModal:false,
-        spinWindows:false,
-       DutydateRange:[],
-        percent:0
-      }
+import LeftNavBar from '../../components/LeftNavBar'
+import HeaderNav from '../../components/HeaderNav'
+export default {
+  components: {
+    LeftNavBar, HeaderNav
+  },
+  data () {
+    return {
+      confirmModal: false,
+      spinWindows: false,
+      DutydateRange: [],
+      percent: 0,
+      serverUrl: this.GLOBAL.localSrc
     }
-    ,methods:{
-      beginAutoDuty(){
-        this.confirmModal = true
-      } ,handleChange(dateRange){
-        this.DutydateRange = dateRange
-      },ok () {
-        let beginDate = this.DutydateRange[0]
-        let endDate = this.DutydateRange[1]
-        this.spinWindows = true
-        this.axios.post('http://localhost:8081/autoDuty/'+beginDate+'/'+endDate)
-          .then(response => {
-            this.spinWindows = false
-            this.$Message.success('自动排班成功！');
-            this.$router.push({ path: '/dutyList' })
-          })
-      },cancel () {
-        this.$Message.info('已取消');
-      },openPrograss(){
-        this.spinWindows = true
-      }
+  },
+  methods: {
+    beginAutoDuty () {
+      this.confirmModal = true
+    },
+    handleChange (dateRange) {
+      this.DutydateRange = dateRange
+    },
+    ok () {
+      let beginDate = this.DutydateRange[0]
+      let endDate = this.DutydateRange[1]
+      this.spinWindows = true
+      this.axios.post(this.serverUrl + '/autoDuty/' + beginDate + '/' + endDate)
+        .then(response => {
+          this.spinWindows = false
+          this.$Message.success('自动排班成功！')
+          this.$router.push({ path: '/dutyList' })
+        })
+    },
+    cancel () {
+      this.$Message.info('已取消')
+    },
+    openPrograss () {
+      this.spinWindows = true
     }
   }
+}
 </script>
 <style>
   .demo-spin-icon-load{

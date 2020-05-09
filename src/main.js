@@ -7,10 +7,12 @@ import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import axios from 'axios'
 import Vueaxios from 'vue-axios'
+import global from '../src/globa/Global'
 
 Vue.use(Vueaxios, axios)
 Vue.use(ViewUI)
 Vue.config.productionTip = false
+Vue.prototype.GLOBAL = global
 
 /* eslint-disable no-new */
 new Vue({

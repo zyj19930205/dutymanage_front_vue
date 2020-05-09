@@ -19,12 +19,12 @@
   </div>
 </template>
 <script>
-  import LeftNavBar from '../../components/LeftNavBar'
-  import HeaderNav from '../../components/HeaderNav'
-  import DutyQueueTable from '../../components/DutyQueueTable'
-  export default {
-    components: {
-      DutyQueueTable,LeftNavBar,HeaderNav
-    }
+import LeftNavBar from '../../components/LeftNavBar'
+import HeaderNav from '../../components/HeaderNav'
+import DutyQueueTable from '../../components/DutyQueueTable'
+export default {
+  components: {
+    DutyQueueTable, LeftNavBar, HeaderNav
   }
+}
 </script>
