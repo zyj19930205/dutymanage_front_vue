@@ -3,7 +3,6 @@
     <Menu mode="horizontal" theme="dark" active-name="1">
       <div class="layout-logo">
 <!--        <img :src="logsrc">-->
-        江西联通
       </div>
       <div class="layout-nav">
         <MenuItem name="1">

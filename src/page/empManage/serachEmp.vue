@@ -14,7 +14,9 @@
            <Input search enter-button placeholder="请输入姓名"  @on-search="serachEmpInfo"/>
 <!--            <h1 v-show="show">今晚开黑!时不我待！</h1>-->
             <br/>
+            <transition name="fade">
             <Table :columns="columns1" :data="data1" v-show="show"></Table>
+            </transition>
           </Content>
         </Layout>
       </Layout>
@@ -68,8 +70,16 @@ export default {
         .then(response => {
           this.data1 = response.data.data
         })
-        this.show = true
+      this.show = !this.show
     }
   }
 }
 </script>
+<style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+</style>

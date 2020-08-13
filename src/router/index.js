@@ -17,8 +17,8 @@ export default new Router({
       path: '/',
       name: 'empList',
       component: empList,
-      meta:{
-        title:'员工管理'
+      meta: {
+        title: '员工管理'
       }
     },
     {
