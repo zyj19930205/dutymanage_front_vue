@@ -85,9 +85,9 @@ export default {
         dutyTypes: [],
         date: '',
         time: '',
-        remarks: '',
-        serverUrl: this.GLOBAL.localSrc
-      }
+        remarks: ''
+      },
+      serverUrl: 'http://localhost:8081'
     }
   },
   methods: {
